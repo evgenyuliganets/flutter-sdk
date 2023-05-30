@@ -34,7 +34,6 @@ class BufferMemoryOutput extends MemoryOutput {
   int bufferSize;
   BufferMemoryOutput({required this.bufferSize, LogOutput? secondOutput})
       : super(bufferSize: bufferSize, secondOutput: secondOutput);
-
   void setBufferSize(int val) {
     bufferSize = val;
     if (buffer.length > bufferSize) {
