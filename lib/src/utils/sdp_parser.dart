@@ -1,7 +1,7 @@
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:sdp_transform/sdp_transform.dart';
 
 import '../logger.dart';
-import 'package:sdp_transform/sdp_transform.dart';
 
 var _logger = getLogger('SdpParser');
 
@@ -124,7 +124,7 @@ class SdpParser {
     sdp = sdp!.replaceAll(
         RegExp(r'useinbandfec=1', multiLine: true), 'useinbandfec=1;stereo=1');
     _logger.i('Replaced SDP response for support stereo');
-    _logger.d('New SDP value: ', sdp);
+    _logger.d('New SDP value: $sdp');
     return sdp;
   }
 
@@ -211,7 +211,7 @@ class SdpParser {
   /// [sdpLine] - SDP line to remove.
   /// Returns [String] SDP without the line.
   static String? removeSdpLine(String? sdp, String sdpLine) {
-    _logger.d('SDP before trimming: ', sdp);
+    _logger.d('SDP before trimming: $sdp');
     var sdpList = sdp!.split('\n');
     sdpList.retainWhere((line) {
       return line.trim() != sdpLine;
@@ -265,7 +265,7 @@ class SdpParser {
         // Change sdp
         sdp = sdp.replaceAll(RegExp(audio), multiopus);
         _logger.i('Multiopus offer created');
-        _logger.d('SDP parsed for multioups: ', sdp);
+        _logger.d('SDP parsed for multioups: $sdp');
       } else {
         _logger.i('Multiopus already setted');
       }

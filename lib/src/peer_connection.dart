@@ -266,7 +266,7 @@ class PeerConnection extends EventEmitter {
       throw Exception('Cannot update bitrate. No peer found.');
     }
 
-    _logger.i('Updating bitrate to value: ', bitrate);
+    _logger.i('Updating bitrate to value: $bitrate');
     sessionDescription = await peer!.createOffer();
     await peer?.setLocalDescription(sessionDescription!);
     String? sdp = updateBandwidthRestriction(
@@ -468,10 +468,10 @@ class PeerConnection extends EventEmitter {
       }
       _logger.i('Peer onnegotiationneeded, updating local description');
       RTCSessionDescription offer = await peer.createOffer();
-      _logger.i('Peer onnegotiationneeded, got local offer', offer.sdp);
+      _logger.i('Peer onnegotiationneeded, got local offer$offer.sdp');
       await peer.setLocalDescription(offer);
       String? sdp = SdpParser.renegotiate(offer.sdp, remoteSdp.sdp);
-      _logger.i('Peer onnegotiationneeded, updating remote description', sdp);
+      _logger.i('Peer onnegotiationneeded, updating remote description $sdp');
       await peer.setRemoteDescription(RTCSessionDescription(sdp, 'answer'));
       _logger.i('Peer onnegotiationneeded, renegotiation done');
     };
